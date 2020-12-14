@@ -55,6 +55,6 @@ export default class Block<T> {
   }
 
   toString() {
-    return JSON.stringify(this.toJSON());
+    return JSON.stringify(this.toJSON(), null, 2);
   }
 }
