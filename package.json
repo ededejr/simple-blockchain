@@ -4,7 +4,9 @@
   "description": "A simple POC implementation of a blockchain in TS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "release": "release-it",
+    "test": "tsc && mocha build/**/*.spec.js"
   },
   "keywords": [
     "de",
@@ -12,5 +14,18 @@
     "typescript"
   ],
   "author": "@dxede",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.0",
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "release-it": "^14.2.2",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@dxede/logger": "0.0.2",
+    "@dxede/utils": "^0.2.2"
+  }
 }
