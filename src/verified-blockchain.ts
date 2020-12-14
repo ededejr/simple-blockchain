@@ -42,10 +42,10 @@ export default class VerifiedBlockChain extends BlockChain {
     }
   }
 
-  private async writeChain() {
-    const filepath = path.join(OUT_FOLDER, `${Date.now()}.json`);
+  async writeChain(filepath?: string) {
+    filepath = filepath || path.join(OUT_FOLDER, `${Date.now()}.json`);
     await this.ensureDir(filepath);
-    const blocks = this.chain.map(b => b.toString());
+    const blocks = this.chain.map(b => b.toJSON());
 
     try {
       await writeFile(filepath, JSON.stringify(blocks, null, 2));
