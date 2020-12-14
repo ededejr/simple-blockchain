@@ -18,7 +18,7 @@ export default class BlockChain {
   /**
    * Create a unix timestamp for blocks.
    */
-  private getUnixTimestamp () {
+  protected getUnixTimestamp () {
     return Math.floor(new Date().getTime() / 1000);
   }
 
@@ -38,7 +38,7 @@ export default class BlockChain {
     return Boolean(this.chain.find(b => b.data === GenesisBlockValue));
   }
 
-  private calculateBlockHash<T>(block: Block<T>) {
+  private getBlockHash<T>(block: Block<T>) {
     return block[CalculateBlockHash]();
   }
 
@@ -68,7 +68,7 @@ export default class BlockChain {
 
       // Recalculate the hash of the block and see if it matches up.
       // This allows us to detect changes to a single block
-      if (currentBlock.hash !== this.calculateBlockHash(currentBlock)) {
+      if (currentBlock.hash !== this.getBlockHash(currentBlock)) {
         return false;
       }
 
@@ -91,9 +91,8 @@ export default class BlockChain {
    * Add a new block to
    * @param data 
    */
-  addBlock<T>(data: T) {
-    const b = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
-    this.chain.push(b);
+  async addBlock<T>(data: T) {
+    this.chain.push(new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash));
     return this;
   }
 }

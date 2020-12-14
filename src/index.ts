@@ -1,11 +1,15 @@
 export * from './block';
 export * from './blockchain';
+export * from './verified-blockchain';
 
-import BlockChain from './blockchain';
 import Block from './block';
+import BlockChain from './blockchain';
+import VerifiedBlockChain from './verified-blockchain';
+
 
 export {
-  Block
+  Block,
+  VerifiedBlockChain
 }
 
 export default BlockChain;
