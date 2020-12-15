@@ -1,6 +1,6 @@
 {
   "name": "@dxede/simple-blockchain",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple POC implementation of a blockchain in TS",
   "main": "src/index.js",
   "scripts": {

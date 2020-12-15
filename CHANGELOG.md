@@ -1,3 +1,5 @@
+## [0.1.2](https://github.com/dxede/simple-blockchain/compare/0.1.1...0.1.2) (2020-12-15)
+
 ## [0.1.1](https://github.com/dxede/simple-blockchain/compare/0.1.0...0.1.1) (2020-12-15)
 
 # 0.1.0 (2020-12-15)
