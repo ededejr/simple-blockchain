@@ -52,7 +52,6 @@ describe('Verified BlockChain', () => {
 
   it('does not allow editing blocks', async () => {
     const ledger = await makeVerifiedChain();
-    await ledger.writeChain();
     try {
       ledger.chain[2].data.amount = 4000;  
     } catch (error) {
