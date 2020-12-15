@@ -1,11 +1,18 @@
+import Logger from "@dxede/logger";
 import Block from "./block";
-import { CalculateBlockHash, GenesisBlockValue } from './utils';
+import { CalculateBlockHash, GenesisBlockValue, Chain } from './utils';
 
 export default class BlockChain {
-  chain: Block<any>[];
+  chain: Chain;
+  log: Logger;
 
   constructor() {
-    this.chain = [this.createGenesisBlock()];
+    this.log = new Logger({
+      name: this.constructor.name,
+    });
+
+    this.chain = new Chain(this.log);
+    this.chain.push(this.createGenesisBlock());
   }
 
   /**

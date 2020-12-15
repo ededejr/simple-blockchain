@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "release": "release-it",
-    "test": "tsc && mocha build/**/*.spec.js"
+    "test": "rm -rf data && tsc && mocha build/**/*.spec.js"
   },
   "keywords": [
     "de",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@dxede/logger": "0.0.2",
-    "@dxede/utils": "^0.2.2"
+    "@dxede/utils": "^0.2.2",
+    "dotenv": "^8.2.0"
   }
 }
