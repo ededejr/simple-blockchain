@@ -83,5 +83,19 @@ describe('File BlockChain', () => {
         expect(false);
       }
     });
+
+    it('can output to specified filepath', async () => {
+      const ledger = await getLedger();
+      const filepath = './data2/test.json';
+      await ledger.writeChain(filepath);
+
+      try {
+        await access(filepath);
+        expect(true);
+      } catch (error) {
+        console.error(error);
+        expect(false);
+      }
+    });
   });
 });
