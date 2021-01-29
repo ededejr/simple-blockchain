@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
-    "launch": "ts-node src/index.ts",
+    "build-prod": "rm -rf build && tsc --project tsconfig.prod.json",
+    "launch": "ts-node src/launch.ts",
     "release": "release-it",
     "test": "rm -rf data && tsc && mocha build/**/*.spec.js"
   },
@@ -47,7 +48,7 @@
       }
     },
     "hooks": {
-      "before:init": "npm run build",
+      "before:init": "npm run build-prod",
       "after:git:release": "cp package.json build/package.json && cp readme.md build/readme.md",
       "after:release": "npm publish build"
     }
