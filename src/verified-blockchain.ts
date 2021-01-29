@@ -6,7 +6,7 @@ export interface VerifiedBlockChainOptions {
   verifyBlocks?: boolean
 }
 
-export default class VerifiedBlockChain<T> extends BlockChain<T> {
+export default class VerifiedBlockChain extends BlockChain {
   private miningDifficulty: number;
 
   constructor(options?: VerifiedBlockChainOptions) {

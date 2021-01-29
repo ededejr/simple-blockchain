@@ -1,5 +1,4 @@
 import winston from "winston";
-import Block from "./block";
 
 winston.addColors({
   error: 'red',
@@ -21,8 +20,9 @@ const defaultLoggerOptions: winston.LoggerOptions = {
     debug: 7,
   },
   format: winston.format.combine(
-    winston.format.simple(),
     winston.format.colorize(),
+    winston.format.prettyPrint(),
+    winston.format.simple(),
   ),
   transports: [
     new winston.transports.Console(),
@@ -46,30 +46,4 @@ export function createLogger(options?: winston.LoggerOptions) {
   const defaultOptions = { ...defaultLoggerOptions };
   Object.assign(defaultOptions, options);
   return winston.createLogger(defaultOptions);
-}
-
-/**
- * Extends `Array` to only push Blocks
- * and log when a block is pushed.
- * 
- * @param logger - A winston logger for observability.
- */
-export class Chain extends Array {
-  private log: (message: string) => void;
-
-  constructor(logger: winston.Logger) {
-    super();
-    this.log = (message) => logger.log({ 
-      level: 'chain', 
-      message
-    });
-  }
-
-  push(...blocks: Block<any>[]) {
-    for (const block of blocks) {
-      this.log(`Added block ${block.hash}` );
-    }
-
-    return super.push(arguments);
-  }
 }

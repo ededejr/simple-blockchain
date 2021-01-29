@@ -1,8 +1,7 @@
 import Block from "./block";
 import { 
   CalculateBlockHash, 
-  GenesisBlockValue, 
-  Chain, 
+  GenesisBlockValue,
   createLogger, 
   LoggerOptions, 
   BlockchainLogger 
@@ -16,13 +15,12 @@ export interface BlockchainOptions {
   loggerOptions?: LoggerOptions
 }
 
-export default class BlockChain<T> {
-  chain: Chain;
+export default class BlockChain {
+  protected chain: Block<any>[] = [];
   logger: BlockchainLogger;
 
   constructor(options?: BlockchainOptions) {
     this.logger = createLogger(options?.loggerOptions);
-    this.chain = new Chain(this.logger);
     this.chain.push(this.createGenesisBlock());
   }
 
@@ -52,11 +50,11 @@ export default class BlockChain<T> {
    * Determine if a genesis block has already
    * been made for this chain.
    */
-  private get hasGenesisBlock() {
+  protected get hasGenesisBlock() {
     return Boolean(this.chain.find(b => b.data === GenesisBlockValue));
   }
 
-  private getBlockHash(block: Block<T>) {
+  private getBlockHash(block: Block<any>) {
     return block[CalculateBlockHash]();
   }
 
@@ -109,8 +107,13 @@ export default class BlockChain<T> {
    * Add a new block to
    * @param data 
    */
-  async addBlock(data: T) {
-    this.chain.push(new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash));
+  async addBlock<T>(data: T) {
+    const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
+    this.chain.push(block);
+    this.logger.log({
+      level: 'chain',
+      message: `Added Block ${block.hash}`
+    });
     return this;
   }
 }
