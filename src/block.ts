@@ -1,6 +1,5 @@
 import * as crypto from 'crypto';
 import { CalculateBlockHash } from './utils';
-
 export default class Block<T> {
   readonly previousHash: string;
   readonly timestamp: number;

@@ -1,9 +1,5 @@
 import BlockChain from ".";
 
-interface Person {
-  name: string
-}
-
 function launch() {
   console.time('Launch');
   console.log('Starting...🏁')
@@ -11,7 +7,10 @@ function launch() {
   console.log('Made the chain...');
 
   const interval = setInterval(async () => {
-    await blockchain.addBlock({ name: 'block' })
+    await blockchain.addBlock({ 
+      name: 'block',
+      description: 'This is data for a block'
+    })
   }, 1200);
 
   setTimeout(() => {
