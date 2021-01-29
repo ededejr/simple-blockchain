@@ -4,7 +4,7 @@ A simple POC for implementing a Blockchain with typescript. There's a couple of 
 
 * `BlockChain`: The simplest version of the block chain which keeps all data in an in-memory `Chain`.
 * `VerifiedBlockChain`: The next step, adding in block verification and mining.
-* `FileBlockChain`: Now with mining and block verification, this one can output its blocks and chain to a file system!
+* `FileBlockChain`: Now with mining and block verification, this one can output its blocks and chain to a file system! *(Tested only on UNIX systems)*
 
 ## Usage
 ```
