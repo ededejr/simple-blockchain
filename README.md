@@ -6,6 +6,12 @@ A simple POC for implementing a Blockchain with typescript. There's a couple of 
 * `VerifiedBlockChain`: The next step, adding in block verification and mining.
 * `FileBlockChain`: Now with mining and block verification, this one can output its blocks and chain to a file system! *(Tested only on UNIX systems)*
 
+## Running
+If you're only interested in seeing it work:
+* Clone the repo
+* Run `npm install`
+* Run `npm run launch`
+
 ## Usage
 ```
 // We'll set up an interface to work with our 
