@@ -1,17 +1,28 @@
-import Logger from "@dxede/logger";
 import Block from "./block";
-import { CalculateBlockHash, GenesisBlockValue, Chain } from './utils';
+import { 
+  CalculateBlockHash, 
+  GenesisBlockValue, 
+  Chain, 
+  createLogger, 
+  LoggerOptions, 
+  BlockchainLogger 
+} from './utils';
+
+export interface BlockchainOptions {
+  /**
+   * Options for the Blockchain's Logger.
+   * Uses a Winston Logger underneath.
+   */
+  loggerOptions?: LoggerOptions
+}
 
 export default class BlockChain {
   chain: Chain;
-  log: Logger;
+  logger: BlockchainLogger;
 
-  constructor() {
-    this.log = new Logger({
-      name: this.constructor.name,
-    });
-
-    this.chain = new Chain(this.log);
+  constructor(options?: BlockchainOptions) {
+    this.logger = createLogger(options?.loggerOptions);
+    this.chain = new Chain(this.logger);
     this.chain.push(this.createGenesisBlock());
   }
 

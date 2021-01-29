@@ -7,3 +7,5 @@ data
 .env-*
 
 tsconfig.tsbuildInfo
+
+blockchain-logs/

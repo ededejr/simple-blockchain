@@ -86,7 +86,7 @@ describe('File BlockChain', () => {
 
     it('can output to specified filepath', async () => {
       const ledger = await getLedger();
-      const filepath = './data2/test.json';
+      const filepath = './data/output-filepath-test.json';
       await ledger.writeChain(filepath);
 
       try {

@@ -44,7 +44,7 @@ export default class FileBlockChain extends VerifiedBlockChain {
     try {
       await writeFile(filepath, JSON.stringify(blocks, null, 2));
     } catch (error) {
-      this.log.error('Could not write chain to file.', error);
+      this.logger.error('Could not write chain to file.', error);
     }
 
     return filepath;
@@ -57,7 +57,7 @@ export default class FileBlockChain extends VerifiedBlockChain {
     try {
       await writeFile(filepath, block.toString()); 
     } catch (error) {
-      this.log.error('Could not write block', error);
+      this.logger.error('Could not write block', error);
     }
   }
 }
