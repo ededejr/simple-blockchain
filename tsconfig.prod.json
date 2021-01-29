@@ -7,8 +7,12 @@
     "outDir": "./build",
     "downlevelIteration": true,
     "strict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,                  
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "tests/*",
+    "src/launch.ts"
+  ]
 }
