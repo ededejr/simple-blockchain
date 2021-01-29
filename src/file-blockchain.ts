@@ -9,7 +9,7 @@ export interface FileBlockChainOptions extends VerifiedBlockChainOptions {
   outFolder?: string,
 }
 
-export default class FileBlockChain extends VerifiedBlockChain {
+export default class FileBlockChain<T> extends VerifiedBlockChain<T> {
   outFolder = './data';
   blocksFolder: string;
 

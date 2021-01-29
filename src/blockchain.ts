@@ -16,7 +16,7 @@ export interface BlockchainOptions {
   loggerOptions?: LoggerOptions
 }
 
-export default class BlockChain {
+export default class BlockChain<T> {
   chain: Chain;
   logger: BlockchainLogger;
 
@@ -56,7 +56,7 @@ export default class BlockChain {
     return Boolean(this.chain.find(b => b.data === GenesisBlockValue));
   }
 
-  private getBlockHash<T>(block: Block<T>) {
+  private getBlockHash(block: Block<T>) {
     return block[CalculateBlockHash]();
   }
 
@@ -109,7 +109,7 @@ export default class BlockChain {
    * Add a new block to
    * @param data 
    */
-  async addBlock<T>(data: T) {
+  async addBlock(data: T) {
     this.chain.push(new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash));
     return this;
   }

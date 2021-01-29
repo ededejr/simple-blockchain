@@ -3,7 +3,7 @@ import BlockChain, { Block } from '../src';
 import { createHash } from 'crypto';
 
 function makeStandardChain (count = 10) {
-  const ledger = new BlockChain();
+  const ledger = new BlockChain<Transaction>();
   
   interface Transaction {
     amount: number,
@@ -13,7 +13,7 @@ function makeStandardChain (count = 10) {
 
   while (count) {
     const amount = count * Math.floor(Math.random() * 200);
-    ledger.addBlock<Transaction>({ 
+    ledger.addBlock({ 
       amount,
       from: createHash('sha256').update(`${amount}`).digest('hex'),
       to: createHash('sha256').update(`${Math.floor(Math.random() * amount)}-${amount}-next`).digest('hex'),
@@ -31,9 +31,9 @@ describe('BlockChain', () => {
   });
 
   it('can add blocks', () => {
-    const ledger = new BlockChain();
+    const ledger = new BlockChain<{ amount: number }>();
     expect(ledger.length).to.equal(1);
-    ledger.addBlock<{ amount: number }>({ amount: 100 });
+    ledger.addBlock({ amount: 100 });
     expect(ledger.length).to.equal(2);
   });
 

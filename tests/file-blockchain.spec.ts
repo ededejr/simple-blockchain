@@ -6,7 +6,7 @@ import { Block, FileBlockChain } from "../src";
 const { access } = fs.promises;
 
 async function makeFileChain (count = 10) {
-  const ledger = new FileBlockChain();
+  const ledger = new FileBlockChain<Transaction>();
   
   interface Transaction {
     amount: number,
@@ -16,7 +16,7 @@ async function makeFileChain (count = 10) {
 
   while (count) {
     const amount = count * Math.floor(Math.random() * 200);
-    await ledger.addBlock<Transaction>({ 
+    await ledger.addBlock({ 
       amount,
       from: createHash('sha256').update(`${amount}`).digest('hex'),
       to: createHash('sha256').update(`${Math.floor(Math.random() * amount)}-${amount}-next`).digest('hex'),
@@ -34,14 +34,14 @@ describe('File BlockChain', () => {
   });
 
   it('can add blocks', async () => {
-    const ledger = new FileBlockChain();
+    const ledger = new FileBlockChain<{ amount: number }>();
     expect(ledger.length).to.equal(1);
-    await ledger.addBlock<{ amount: number }>({ amount: 100 });
+    await ledger.addBlock({ amount: 100 });
     expect(ledger.length).to.equal(2);
   });
 
   describe('Characteristics', () => {
-    let ledger: FileBlockChain;
+    let ledger: FileBlockChain<any>;
 
     async function getLedger () {
       if (!ledger) {

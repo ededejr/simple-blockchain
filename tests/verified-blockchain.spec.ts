@@ -3,7 +3,7 @@ import { Block, VerifiedBlockChain } from "../src";
 import { createHash } from 'crypto';
 
 async function makeVerifiedChain (count = 10) {
-  const ledger = new VerifiedBlockChain();
+  const ledger = new VerifiedBlockChain<Transaction>();
   
   interface Transaction {
     amount: number,
@@ -13,7 +13,7 @@ async function makeVerifiedChain (count = 10) {
 
   while (count) {
     const amount = count * Math.floor(Math.random() * 200);
-    await ledger.addBlock<Transaction>({ 
+    await ledger.addBlock({ 
       amount,
       from: createHash('sha256').update(`${amount}`).digest('hex'),
       to: createHash('sha256').update(`${Math.floor(Math.random() * amount)}-${amount}-next`).digest('hex'),
@@ -31,9 +31,9 @@ describe('Verified BlockChain', () => {
   });
 
   it('can add blocks', async () => {
-    const ledger = new VerifiedBlockChain();
+    const ledger = new VerifiedBlockChain<{ amount: number }>();
     expect(ledger.length).to.equal(1);
-    await ledger.addBlock<{ amount: number }>({ amount: 100 });
+    await ledger.addBlock({ amount: 100 });
     expect(ledger.length).to.equal(2);
   });
 
