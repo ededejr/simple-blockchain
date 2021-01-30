@@ -21,11 +21,9 @@ export default class VerifiedBlockChain extends BlockChain {
   async addBlock<T>(data: T) {
     const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
     await block.verify(this.miningDifficulty);
-    await this.onNewBlock(block);
+    await this.onBlockAdd(block);
     this.chain.push(block);
     return this;
   }
-
-  async onNewBlock<T>(block: Block<T>) {}
 }
 

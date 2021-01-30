@@ -6,6 +6,10 @@ function launch() {
   const blockchain = new BlockChain({ verbose: true });
   console.log('Made the chain...');
 
+  blockchain.onBlockAdd = async (block) => {
+    console.log(block);
+  }
+
   const interval = setInterval(async () => {
     await blockchain.addBlock({ 
       name: 'block',

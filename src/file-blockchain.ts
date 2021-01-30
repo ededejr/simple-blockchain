@@ -23,7 +23,7 @@ export default class FileBlockChain extends VerifiedBlockChain {
     this.blocksFolder = path.join(this.outFolder, 'blocks');
   }
 
-  async onNewBlock<T>(block: Block<T>) {
+  async onBlockAdd<T>(block: Block<T>) {
     await this.writeBlock<T>(block);
   }
 

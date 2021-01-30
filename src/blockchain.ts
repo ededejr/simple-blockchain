@@ -117,7 +117,7 @@ export default class BlockChain {
     const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
     this.chain.push(block);
     this.logChainEvent(`Added Block ${block.hash}`);
-    this.onBlockAdd(block);
+    await this.onBlockAdd(block);
     return this;
   }
 
@@ -134,5 +134,5 @@ export default class BlockChain {
     }
   }
 
-  onBlockAdd<T>(block: Block<T>) {}
+  async onBlockAdd<T>(block: Block<T>) {}
 }
