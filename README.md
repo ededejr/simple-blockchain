@@ -13,7 +13,7 @@ Steps if you're only interested in seeing a demo:
 * Run `npm run launch`
 
 ## Usage
-```
+```ts
 // We'll set up an interface to work with our 
 // recordable data
 interface Transaction {
