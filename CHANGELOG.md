@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/dxede/simple-blockchain/compare/0.1.2...0.2.0) (2021-01-30)
+
+
+### Bug Fixes
+
+* File listener bug ([8f7232c](https://github.com/dxede/simple-blockchain/commit/8f7232c61c5ecade1c76de3694daf4adad41776f))
+
+
+### Features
+
+* Generic Blockchains ([9b69885](https://github.com/dxede/simple-blockchain/commit/9b698855b88d2e339de3f412d9ce62be2710c214))
+* Remove chain class and use abstracted array ([7dacf54](https://github.com/dxede/simple-blockchain/commit/7dacf54ab07d620bd1adb6ec848aa362508c2638))
+* Use Winston logger ([e425cc0](https://github.com/dxede/simple-blockchain/commit/e425cc014ed064507debd4f9ff9ee84fa884cf5a))
+
 ## [0.1.2](https://github.com/dxede/simple-blockchain/compare/0.1.1...0.1.2) (2020-12-15)
 
 ## [0.1.1](https://github.com/dxede/simple-blockchain/compare/0.1.0...0.1.1) (2020-12-15)
