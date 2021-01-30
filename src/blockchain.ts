@@ -110,8 +110,9 @@ export default class BlockChain {
   }
 
   /**
-   * Add a new block to
-   * @param data 
+   * Add a block.
+   * 
+   * @param data Data the block should store.
    */
   async addBlock<T>(data: T) {
     const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
@@ -134,5 +135,11 @@ export default class BlockChain {
     }
   }
 
+  /**
+   * Call back function after a block is added 
+   * to the chain.
+   * 
+   * @param block Receives the added block.
+   */
   async onBlockAdd<T>(block: Block<T>) {}
 }

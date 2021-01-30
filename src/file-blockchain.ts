@@ -6,6 +6,9 @@ import VerifiedBlockChain, { VerifiedBlockChainOptions } from "./verified-blockc
 const { access, mkdir, writeFile } = fs.promises;
 
 export interface FileBlockChainOptions extends VerifiedBlockChainOptions {
+  /**
+   * Where to store the files.
+   */
   outFolder?: string,
 }
 

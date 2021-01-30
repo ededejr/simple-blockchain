@@ -2,8 +2,11 @@ import Block from "./block";
 import BlockChain from "./blockchain";
 
 export interface VerifiedBlockChainOptions {
+  /**
+   * Set the mining difficultly required
+   * to add new blocks.
+   */
   miningDifficulty?: number,
-  verifyBlocks?: boolean
 }
 
 export default class VerifiedBlockChain extends BlockChain {
@@ -14,10 +17,6 @@ export default class VerifiedBlockChain extends BlockChain {
     this.miningDifficulty = options?.miningDifficulty ?? 1;
   }
 
-  /**
-   * Add a new block to
-   * @param data 
-   */
   async addBlock<T>(data: T) {
     const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
     await block.verify(this.miningDifficulty);
