@@ -1,4 +1,4 @@
-# A Simple Blockchain in Typescript
+# Simple Blockchain in Typescript
 
 A simple POC for implementing a basic Blockchain in Typescript. There's a couple of different versions in here extending the capabilities of how this might be used.
 
