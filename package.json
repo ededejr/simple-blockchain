@@ -8,7 +8,9 @@
     "build-prod": "rm -rf build && tsc --project tsconfig.prod.json",
     "launch": "ts-node src/launch.ts",
     "release": "release-it",
-    "test": "rm -rf data && tsc && mocha build/**/*.spec.js"
+    "test": "rm -rf data && tsc && mocha build/**/*.spec.js",
+    "package": "cp package.json build/package.json && cp readme.md build/readme.md",
+    "manual-publish": "npm run build-prod && npm run package && npm publish build"
   },
   "keywords": [
     "blockchain",
@@ -49,7 +51,7 @@
     },
     "hooks": {
       "before:init": "npm run test && npm run build-prod",
-      "after:git:release": "cp package.json build/package.json && cp readme.md build/readme.md",
+      "after:git:release": "npm run package",
       "after:release": "npm publish build"
     }
   },
