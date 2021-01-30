@@ -42,7 +42,7 @@ export default class FileBlockChain extends VerifiedBlockChain {
     const blocks = this.chain.map(b => b.toJSON());
 
     try {
-      await writeFile(filepath, JSON.stringify(blocks, null, 2));
+      await writeFile(filepath, JSON.stringify(blocks, null, 2), 'utf-8');
     } catch (error) {
       this.logger.error('Could not write chain to file.', error);
     }
@@ -55,7 +55,7 @@ export default class FileBlockChain extends VerifiedBlockChain {
     await this.ensureDir(filepath);
 
     try {
-      await writeFile(filepath, block.toString()); 
+      await writeFile(filepath, block.toString(), 'utf-8'); 
     } catch (error) {
       this.logger.error('Could not write block', error);
     }

@@ -6,13 +6,7 @@ import { Block, FileBlockChain } from "../src";
 const { access } = fs.promises;
 
 async function makeFileChain (count = 10) {
-  const ledger = new FileBlockChain<Transaction>();
-  
-  interface Transaction {
-    amount: number,
-    from: string,
-    to: string
-  }
+  const ledger = new FileBlockChain();
 
   while (count) {
     const amount = count * Math.floor(Math.random() * 200);
@@ -34,20 +28,22 @@ describe('File BlockChain', () => {
   });
 
   it('can add blocks', async () => {
-    const ledger = new FileBlockChain<{ amount: number }>();
+    const ledger = new FileBlockChain();
     expect(ledger.length).to.equal(1);
     await ledger.addBlock({ amount: 100 });
     expect(ledger.length).to.equal(2);
   });
 
   describe('Characteristics', () => {
-    let ledger: FileBlockChain<any>;
+    let ledger: FileBlockChain;
 
-    async function getLedger () {
-      if (!ledger) {
+    async function getLedger() {
+      if (ledger) {
+        return ledger;
+      } else {
         ledger = await makeFileChain();
+        return ledger;
       }
-      return ledger;
     }
 
     it('allows iteration', async () => {  
@@ -60,15 +56,6 @@ describe('File BlockChain', () => {
     it('can validate itself', async () => {
       const ledger = await getLedger();
       expect(ledger.isValid).to.be.true;
-    });
-  
-    it('does not allow editing blocks', async () => {
-      const ledger = await getLedger();
-      try {
-        ledger.chain[2].data.amount = 4000;  
-      } catch (error) {
-        expect(true); 
-      }
     });
 
     it('can output to files', async () => {

@@ -9,6 +9,10 @@ import {
 
 export interface BlockchainOptions {
   /**
+   * Determines if the blockchain should log its actions.
+   */
+  verbose?: boolean,
+  /**
    * Options for the Blockchain's Logger.
    * Uses a Winston Logger underneath.
    */
@@ -17,10 +21,12 @@ export interface BlockchainOptions {
 
 export default class BlockChain {
   protected chain: Block<any>[] = [];
+  protected isVerbose: boolean;
   logger: BlockchainLogger;
 
   constructor(options?: BlockchainOptions) {
     this.logger = createLogger(options?.loggerOptions);
+    this.isVerbose = options?.verbose ?? false;
     this.chain.push(this.createGenesisBlock());
   }
 
@@ -110,10 +116,20 @@ export default class BlockChain {
   async addBlock<T>(data: T) {
     const block = new Block<T>(this.getUnixTimestamp(), data, this.latestBlock.hash);
     this.chain.push(block);
-    this.logger.log({
-      level: 'chain',
-      message: `Added Block ${block.hash}`
-    });
+    this.logChainEvent(`Added Block ${block.hash}`);
     return this;
+  }
+
+  /**
+   * Log chain events
+   * @param message 
+   */
+  protected logChainEvent(message: string) {
+    if (this.isVerbose) {
+      this.logger.log({
+        level: 'chain',
+        message
+      });
+    }
   }
 }

@@ -3,7 +3,7 @@ import BlockChain from ".";
 function launch() {
   console.time('Launch');
   console.log('Starting...🏁')
-  const blockchain = new BlockChain();
+  const blockchain = new BlockChain({ verbose: true });
   console.log('Made the chain...');
 
   const interval = setInterval(async () => {

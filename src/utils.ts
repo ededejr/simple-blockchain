@@ -26,13 +26,6 @@ const defaultLoggerOptions: winston.LoggerOptions = {
   ),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({
-      level: 'chain',
-      filename: toLogsDir('chain-activity.log'),
-    }),
-    new winston.transports.File({
-      filename: toLogsDir('events.log'),
-    }),
   ]
 }
 

@@ -2,7 +2,7 @@
   "name": "@dxede/simple-blockchain",
   "version": "0.1.2",
   "description": "A simple POC implementation of a blockchain in TS",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "build-prod": "rm -rf build && tsc --project tsconfig.prod.json",
@@ -39,7 +39,7 @@
     },
     "npm": {
       "publish": false,
-      "publishPath": "dist"
+      "publishPath": "build"
     },
     "plugins": {
       "@release-it/conventional-changelog": {
@@ -48,7 +48,7 @@
       }
     },
     "hooks": {
-      "before:init": "npm run build-prod",
+      "before:init": "npm run test && npm run build-prod",
       "after:git:release": "cp package.json build/package.json && cp readme.md build/readme.md",
       "after:release": "npm publish build"
     }

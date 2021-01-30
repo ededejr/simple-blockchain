@@ -3,7 +3,7 @@ import BlockChain, { Block } from '../src';
 import { createHash } from 'crypto';
 
 function makeStandardChain (count = 10) {
-  const ledger = new BlockChain<Transaction>();
+  const ledger = new BlockChain();
   
   interface Transaction {
     amount: number,
@@ -31,7 +31,7 @@ describe('BlockChain', () => {
   });
 
   it('can add blocks', () => {
-    const ledger = new BlockChain<{ amount: number }>();
+    const ledger = new BlockChain();
     expect(ledger.length).to.equal(1);
     ledger.addBlock({ amount: 100 });
     expect(ledger.length).to.equal(2);
@@ -48,14 +48,5 @@ describe('BlockChain', () => {
   it('can validate', () => {
     const ledger = makeStandardChain();
     expect(ledger.isValid).to.be.true;
-  });
-
-  it('does not allow editing blocks', () => {
-    const ledger = makeStandardChain();
-    try {
-      ledger.chain[2].data.amount = 4000;  
-    } catch (error) {
-      expect(true); 
-    }
   });
 });
