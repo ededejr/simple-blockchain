@@ -1,4 +1,4 @@
-# Simple Blockchain in Typescript
+### A Simple Typescript Blockchain
 
 A simple POC for implementing a basic Blockchain in Typescript. There's a couple of different versions in here extending the capabilities of how this might be used.
 
@@ -6,13 +6,13 @@ A simple POC for implementing a basic Blockchain in Typescript. There's a couple
 * `VerifiedBlockChain`: The next step, adding in block verification and mining.
 * `FileBlockChain`: Now with mining and block verification, this one can output its blocks and chain to a file system! *(Tested only on UNIX systems)*
 
-## Running
+### Running
 Steps if you're only interested in seeing a demo:
 * Clone the repo
 * Run `npm install`
 * Run `npm run launch`
 
-## Usage
+### Usage
 ```ts
 // We'll set up an interface to work with our 
 // recordable data
